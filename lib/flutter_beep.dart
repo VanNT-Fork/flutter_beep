@@ -12,6 +12,13 @@ class FlutterBeep {
     return _channel.invokeMethod('playSysSound', args);
   }
 
+  static Future<void> stopSysSound() async {
+    if (!Platform.isAndroid) {
+      return;
+    }
+    return _channel.invokeMethod('stopSysSound');
+  }
+
   static Future<void> beep([bool success = true]) {
     var soundId =
         (Platform.isAndroid) ? (success ? 24 : 25) : (success ? 1256 : 1257);
